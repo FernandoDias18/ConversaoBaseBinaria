@@ -1,0 +1,28 @@
+expressaoBinario = input("Digite a expressão: ")
+
+#transforma a string em lista
+expressaoSplit = list(expressaoBinario)
+tamanhoExpresssao = len(expressaoSplit)
+
+
+soma = 0
+
+
+for elemento in expressaoBinario:
+    #verificação se o valor passado é realmente binário
+    if (expressaoBinario.isdigit() and elemento == "1" or elemento == "0"):
+        #transforma o elemento em inteiro para realizar o cálculo
+        valorNumero = int(elemento)
+        #realiza o cálculo
+        calculo = valorNumero * (2 ** (tamanhoExpresssao - 1))
+        #diminui o tamanho da expressão, pois esse valor é usado como index no cálculo
+        tamanhoExpresssao -= 1
+        soma += calculo
+
+    else:
+        soma = 0
+        print("Número não binário")
+        break
+
+
+print(f"Soma = {soma}")
