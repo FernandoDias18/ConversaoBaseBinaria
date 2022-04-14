@@ -1,0 +1,97 @@
+prim = input("Digite o primeiro numero:")
+seg = input("Digite o segundo numero:")
+
+#verifica qual das strings é maior e atribui o valor para a variável tamanhoMax
+tamanhoMax = max(len(prim), len(seg))
+
+#faz o preenchimento da menor string, para deixar as duas com o mesmo tamanho
+prim = prim.zfill(tamanhoMax)
+seg = seg.zfill(tamanhoMax)
+
+#Transforma as strings em lista, fazendo a separação dos valores
+splitPrim = list(prim)
+splitSeg = list(seg)
+
+#adiciona os elementos das duas listas em uma única lista, para fazer a verificação
+listaValores = []
+for elemento in splitPrim:
+    listaValores.append(elemento)
+for elemento in splitSeg:
+    listaValores.append(elemento)
+
+print(prim, "-", seg)
+
+for elemento in listaValores:
+    #verificação se o valor passado é realmente binário
+    if (prim.isdigit() and seg.isdigit() and elemento == "1" or elemento == "0"):
+
+        #Listas que receberam os elemento convertidos para int
+        listaPrim = [] #elementos convertidos da primeira string
+        listaSeg = [] #elementos convertidos da segunda string
+
+
+        #transforma os elementos da primeira string em int
+        for i in prim:
+            numeroPrim = int(i)
+            listaPrim.append(numeroPrim)
+
+        #realiza a troca de valor dos elementos da segunda string
+        for elemento in seg:
+            if elemento == "1":
+                elemento = 0
+
+            else:
+                elemento = 1
+
+            listaSeg.append(elemento)
+
+        # Lista que ira receber o resultado do complemento de dois
+        listaResultado = []
+
+        i = tamanhoMax - 1
+        soma = 0
+
+        while (i >= 0):
+            #Se for o último elemento da lista, além de realizar a soma do elemento das duas listas, é somado o número 1
+            if i == tamanhoMax - 1:
+                soma = listaSeg[i] + listaPrim[i] + 1
+                if soma == 3:
+                    listaResultado.append(1)
+                elif soma == 2:
+                    listaResultado.append(0)
+                else:
+                    listaResultado.append(soma)
+
+            #Caso a soma de um número maior que 1, no próximo cálculo é somando o valor 1 novamente
+            elif soma == 3 or soma == 2:
+                soma = listaSeg[i] + listaPrim[i] + 1
+                if soma == 3:
+                    listaResultado.append(1)
+                elif soma == 2:
+                    listaResultado.append(0)
+                else:
+                    listaResultado.append(soma)
+            else:
+                soma = listaSeg[i] + listaPrim[i]
+                if soma == 3:
+                    listaResultado.append(1)
+                elif soma == 2:
+                    listaResultado.append(0)
+                else:
+                    listaResultado.append(soma)
+
+            i = i - 1
+
+        #Reverte a lista
+        reverter = reversed(listaResultado)
+        resultado = ''
+
+        #transforma os elementos em string novamente
+        for i in reverter:
+            resultado += str(i)
+    else:
+        print("Não é um número binário")
+        resultado = 0
+        break
+
+print(f"Resultado = {resultado}")
