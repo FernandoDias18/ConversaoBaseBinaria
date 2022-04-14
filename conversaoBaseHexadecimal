@@ -1,0 +1,66 @@
+from re import match
+
+
+expressao = input("Digite a expressão: ").upper()
+
+#transforma a string em uma lista
+expressaoSplit = list(expressao)
+tamanhoExpresssao = len(expressao)
+
+
+soma = 0
+for elemento in expressaoSplit:
+    #verifica se o elemento é um número
+    if (elemento.isdigit()):
+        valorNumero = int(elemento)
+        calculo = valorNumero * (16 ** (tamanhoExpresssao - 1))
+        # diminui o tamanho da expressão, pois esse valor é usado como index no cálculo
+        tamanhoExpresssao -= 1
+    #caso não seja um número, verifica se o elemento está entre A e F e faz a troca do valor desse elemento
+    elif (elemento in "ABCDEF"):
+        match (elemento):
+            case "A":
+                # subsitui a letra pelo seu valor numérico correspondente
+                valorNumero = 10
+                calculo = valorNumero * (16 ** (tamanhoExpresssao - 1))
+                # diminui o tamanho da expressão, pois esse valor é usado como index no cálculo
+                tamanhoExpresssao -= 1
+            case "B":
+                # subsitui a letra pelo seu valor numérico correspondente
+                valorNumero= 11
+                calculo = valorNumero * (16 ** (tamanhoExpresssao - 1))
+                # diminui o tamanho da expressão, pois esse valor é usado como index no cálculo
+                tamanhoExpresssao -= 1
+            case "C":
+                # subsitui a letra pelo seu valor numérico correspondente
+                valorNumero = 12
+                calculo = valorNumero * (16 ** (tamanhoExpresssao - 1))
+                # diminui o tamanho da expressão, pois esse valor é usado como index no cálculo
+                tamanhoExpresssao -= 1
+            case "D":
+                # subsitui a letra pelo seu valor numérico correspondente
+                valorNumero = 13
+                calculo = valorNumero * (16 ** (tamanhoExpresssao - 1))
+                # diminui o tamanho da expressão, pois esse valor é usado como index no cálculo
+                tamanhoExpresssao -= 1
+            case "E":
+                # subsitui a letra pelo seu valor numérico correspondente
+                valorNumero = 14
+                calculo = valorNumero * (16 ** (tamanhoExpresssao - 1))
+                # diminui o tamanho da expressão, pois esse valor é usado como index no cálculo
+                tamanhoExpresssao -= 1
+            case "F":
+                # subsitui a letra pelo seu valor numérico correspondente
+                valorNumero = 15
+                calculo = valorNumero * (16 ** (tamanhoExpresssao - 1))
+                # diminui o tamanho da expressão, pois esse valor é usado como index no cálculo
+                tamanhoExpresssao -= 1
+    else:
+        print("Não é um número hexadecimal")
+        soma = 0
+        break
+    soma += calculo
+
+print(f"Soma = {soma}")
+
+
